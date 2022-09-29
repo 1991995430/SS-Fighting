@@ -38,7 +38,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.ss.up.model" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.ss.song.model" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
@@ -47,13 +47,12 @@
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.ss.up.mapper"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.ss.song.mapper"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
-            <property name="rootInterface" value="com.ss.up.mapper.ResExtMapperDao"/>
         </javaClientGenerator>
 
         <!--<table schema="uhome_resource" tableName="res_ext" domainObjectName="ResExt"/>-->
-        <table schema="shangsong" tableName="res_ext" domainObjectName="ResExt"/>
+        <table schema="shangsong" tableName="user" domainObjectName="User"/>
     </context>
 </generatorConfiguration>
