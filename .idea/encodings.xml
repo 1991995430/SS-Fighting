@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ss-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ss-service-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ss-service-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ss-service-api/ss-practice-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ss-service-api/ss-setting-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ss-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ss-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ss-service/ss-practice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ss-service/ss-practice/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ss-service/ss-setting/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ss-service/ss-setting/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

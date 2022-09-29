@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ss-practice" />
+        <module name="ss-common" />
+        <module name="ss-setting" />
+        <module name="ss-setting-api" />
+        <module name="ss-practice-api" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ss-common" options="-parameters" />
+      <module name="ss-practice" options="-parameters" />
+      <module name="ss-practice-api" options="-parameters" />
+      <module name="ss-service" options="-parameters" />
+      <module name="ss-service-api" options="-parameters" />
+      <module name="ss-setting" options="-parameters" />
+      <module name="ss-setting-api" options="-parameters" />
+    </option>
+  </component>
+</project>
