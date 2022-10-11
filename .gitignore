@@ -1,0 +1,10 @@
+target/
+/ss-service/target/*
+/ss-service/ss-practice/target/*
+/ss-service/ss-setting/target/*
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+logs/

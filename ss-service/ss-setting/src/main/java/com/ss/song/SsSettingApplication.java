@@ -1,5 +1,6 @@
 package com.ss.song;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -14,6 +15,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @ServletComponentScan
 @EnableFeignClients(basePackages = "com.ss.*")
 @EnableDiscoveryClient
+@MapperScan("com.ss.song.mapper")
 public class SsSettingApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

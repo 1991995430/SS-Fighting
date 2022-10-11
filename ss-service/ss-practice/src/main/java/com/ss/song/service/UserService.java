@@ -8,4 +8,6 @@ public interface UserService {
 
     List<User> selectById(Integer id);
 
+    void updateByExample(User user);
+
 }

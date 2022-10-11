@@ -1,4 +1,9 @@
 package com.ss.song.service;
 
-public class SsService {
+public interface SsService {
+
+    void updateDiffService(Integer id);
+
+    void updateSameService(Integer id);
+
 }
