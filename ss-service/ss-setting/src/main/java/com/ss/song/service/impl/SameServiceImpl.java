@@ -22,7 +22,7 @@ public class SameServiceImpl implements SameService {
 
         User user = new User();
         user.setId(id);
-        user.setName("第二个服务修改555555");
+        user.setName("第二个服务修改888888");
         user.setAddress("江苏省spring");
         User user1 = userMapper.selectByPrimaryKey(1);
         System.out.println(user1.getName());

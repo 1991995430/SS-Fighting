@@ -5,6 +5,7 @@ import com.ss.song.mapper.UserMapper;
 import com.ss.song.model.User;
 import com.ss.song.service.UserService;
 import com.ss.song.vo.CtUser;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,10 +40,11 @@ public class PracticeClient implements IPracticeClient {
 
     @Override
     @Transactional
+//    @GlobalTransactional(rollbackFor = Exception.class)
     public void updateByPrimaryKey(Integer id) {
         User user = new User();
         user.setId(id);
-        user.setName("服务2修改66666666");
+        user.setName("服务2修改11111111");
         user.setAddress("江苏省南京市秣陵街道");
         User user1 = userMapper.selectByPrimaryKey(1);
 
@@ -50,6 +52,6 @@ public class PracticeClient implements IPracticeClient {
 
         userService.updateByExample(user);
 
-        throw new RuntimeException("服务2异常。。。");
+//        throw new RuntimeException("服务2异常。。。");
     }
 }

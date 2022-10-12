@@ -31,7 +31,7 @@
       <module name="ss-common" options="-parameters" />
       <module name="ss-practice" options="-parameters" />
       <module name="ss-practice-api" options="-parameters" />
-      <module name="ss-service" options="" />
+      <module name="ss-service" options="-parameters" />
       <module name="ss-service-api" options="-parameters" />
       <module name="ss-setting" options="-parameters" />
       <module name="ss-setting-api" options="-parameters" />

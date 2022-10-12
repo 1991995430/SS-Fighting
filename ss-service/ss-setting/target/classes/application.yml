@@ -141,3 +141,30 @@ xss:
   excludes: /system/notice/*
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
+
+# seata
+seata:
+  enabled: true
+  enable-auto-data-source-proxy: true #是否开启数据源自动代理,默认为true
+  tx-service-group: seata  #要与nacos配置中心的service.vgroupMapping.my_test_tx_group一致、
+  # 以下都是在conf的registry.conf文件中对应
+  registry:  #registry根据seata服务端的registry配置
+    type: nacos #默认为file
+    nacos:
+      application: seata-server # 配置自己的seata服务
+      server-addr: localhost:8848 #根据自己的seata服务配置
+      username: nacos
+      password: nacos
+      namespace: ffdbd7fa-3871-4344-85e5-490b1e5f6e2b  # seata-server在nacos的命名空间ID
+      cluster: default # 配置自己的seata服务cluster, 默认为 default
+      group: SEATA_GROUP    # seata-server在nacos的分组
+  config:
+    type: nacos #默认file,如果使用file不配置下面的nacos,直接配置seata.service
+    nacos:
+      server-addr: localhost:8848 #配置自己的nacos地址
+      group: SEATA_GROUP #seata-server在nacos的分组
+      username: nacos
+      password: nacos
+      namespace: ffdbd7fa-3871-4344-85e5-490b1e5f6e2b
+      dataId: seataServer.properties   #配置自己的dataId,由于搭建服务端时把客户端的配置也写在了seataServer.properties,所以这里用了和服务端一样的配置文件,实际客户端和服务端的配置文件分离出来更好
+
