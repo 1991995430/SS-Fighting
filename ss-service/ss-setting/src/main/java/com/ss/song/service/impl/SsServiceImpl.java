@@ -14,6 +14,10 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class SsServiceImpl implements SsService {
 
@@ -70,5 +74,31 @@ public class SsServiceImpl implements SsService {
         sameService.updateByPrimKey(id);
 
         System.out.println("-----------------------");
+    }
+
+
+    public static void main(String[] args) {
+
+        List<User> userList = new ArrayList<>();
+        User user = new User();
+        user.setId(1);
+        user.setName("1411");
+        User user1 = new User();
+        user1.setId(3);
+        user1.setName(null);
+        User user2 = new User();
+        user2.setId(4);
+        user2.setName(null);
+        userList.add(user);
+        userList.add(user1);
+        userList.add(user2);
+
+        List<Integer> collect = userList.stream().map(User::getId).collect(Collectors.toList());
+
+
+        System.out.println(userList.stream().map(User::getName).distinct().count());
+        if (userList.stream().map(User::getName).distinct().count() > 1) {
+            throw new RuntimeException("请选择名称相同的合并");
+        }
     }
 }
