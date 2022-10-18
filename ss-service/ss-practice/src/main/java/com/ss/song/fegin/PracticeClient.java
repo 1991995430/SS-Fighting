@@ -1,12 +1,12 @@
 package com.ss.song.fegin;
 
+import com.ss.song.common.exception.SsException;
 import com.ss.song.convert.UserConverter;
+import com.ss.song.exception.InternalApiException;
 import com.ss.song.mapper.UserMapper;
 import com.ss.song.model.User;
 import com.ss.song.service.UserService;
 import com.ss.song.vo.CtUser;
-import io.seata.spring.annotation.GlobalTransactional;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +34,9 @@ public class PracticeClient implements IPracticeClient {
     public CtUser selectByPrimaryKey(Integer applyId) {
         List<User> userList = userService.selectById(2);
         User user = userList.get(0);
+        if (user != null) {
+            throw new SsException("aaaa");
+        }
 
         return UserConverter.INSTANCE.toVo(user);
     }

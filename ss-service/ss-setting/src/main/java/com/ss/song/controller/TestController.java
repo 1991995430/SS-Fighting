@@ -1,5 +1,6 @@
 package com.ss.song.controller;
 
+import com.ss.song.exception.InternalApiException;
 import com.ss.song.fegin.IPracticeClient;
 import com.ss.song.service.SsService;
 import com.ss.song.vo.CtUser;
@@ -31,7 +32,7 @@ public class TestController {
     }
 
     @GetMapping("/con1")
-    public CtUser con1(@RequestParam String aa) {
+    public CtUser con1(@RequestParam String aa) throws InternalApiException {
 
 
         return iPracticeClient.selectByPrimaryKey(6789);

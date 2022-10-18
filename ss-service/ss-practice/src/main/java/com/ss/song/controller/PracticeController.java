@@ -1,14 +1,12 @@
 package com.ss.song.controller;
 
+import com.ss.song.common.exception.SsException;
+import com.ss.song.dto.UserDto;
 import com.ss.song.model.User;
 import com.ss.song.rest.RestResponse;
 import com.ss.song.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,6 +36,19 @@ public class PracticeController {
         List<User> userList = userService.selectById(id);
         userList.get(0).setName(userName);
         return RestResponse.RestResponseBuilder.createSuccessBuilder().setResult(userList).buidler();
+    }
+
+    @PostMapping("/con3")
+    public String con3(@RequestBody UserDto userDto) {
+//        if (null == userDto.getAddress()) {
+//            throw new SsException("地址为空！！！");
+//        }
+        return getString(userDto);
+    }
+
+    private String getString(User user) {
+        //UserDto userDto = (UserDto)user;
+        return "applyName::" + user.getApplyName() + "--userName::"+user.getName();
     }
 
 }

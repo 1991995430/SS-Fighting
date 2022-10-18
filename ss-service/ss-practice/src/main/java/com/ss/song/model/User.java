@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class User implements Serializable {
     private Integer id;
 
+    private String applyName;
+
     private String name;
 
     private Integer age;
@@ -113,6 +115,14 @@ public class User implements Serializable {
 
     public void setProvince(String province) {
         this.province = province == null ? null : province.trim();
+    }
+
+    public String getApplyName() {
+        return applyName;
+    }
+
+    public void setApplyName(String applyName) {
+        this.applyName = applyName;
     }
 
     @Override

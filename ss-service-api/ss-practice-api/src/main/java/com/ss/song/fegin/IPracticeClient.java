@@ -1,5 +1,6 @@
 package com.ss.song.fegin;
 
+import com.ss.song.exception.InternalApiException;
 import com.ss.song.vo.CtUser;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
@@ -11,7 +12,7 @@ public interface IPracticeClient {
 
     @GetMapping(value= "/ss/selectByPrimaryKey", produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = "application/json;charset=UTF-8")
-    CtUser selectByPrimaryKey(@RequestParam Integer applyId);
+    CtUser selectByPrimaryKey(@RequestParam Integer applyId) throws InternalApiException;
 
     @GetMapping(value= "/ss/updateByPrimaryKey", produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = "application/json;charset=UTF-8")
