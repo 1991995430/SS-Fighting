@@ -12,6 +12,7 @@
         <module>ss-service</module>
         <module>ss-common</module>
         <module>ss-service-api</module>
+        <module>api-gateway</module>
     </modules>
 
     <parent>

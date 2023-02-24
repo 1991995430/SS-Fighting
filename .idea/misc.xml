@@ -6,6 +6,9 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/ss-service/ss-setting/pom.xml" />
+        <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/sso-serve/pom.xml" />
+        <option value="$PROJECT_DIR$/sso-manage/pom.xml" />
       </list>
     </option>
   </component>

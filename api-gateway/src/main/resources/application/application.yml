@@ -1,0 +1,32 @@
+server:
+  port: 19100
+
+spring:
+  application:
+    name: api-gateway
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 500MB
+      max-request-size: 500MB
+  cloud:
+    consul:
+      config:
+        enabled: true
+      discovery:
+        register: true
+        health-check-path: /health
+        health-check-interval: 5s
+        health-check-timeout: 300s
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+        enabled: true
+        service-name: ${spring.application.name}
+        prefer-ip-address: true
+    gateway:
+      discovery:
+        locator:
+          enabled: true   
+          
+write-list:
+ urls: /authority-server/authority/auth/getVerifyCodeImage,/authority-server/authority/auth/login
+ ips: 192.168.0.1,127.0.0.1

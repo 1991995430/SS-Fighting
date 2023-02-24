@@ -1,0 +1,28 @@
+server:
+  port: 19112
+
+spring:
+  application:
+    name: sso-manage
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 500MB
+      max-request-size: 500MB
+  cloud:
+    consul:
+      config:
+        enabled: true
+      discovery:
+        register: true
+        health-check-path: /health
+        health-check-interval: 5s
+        health-check-timeout: 300s
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+        enabled: true
+        service-name: ${spring.application.name}
+        prefer-ip-address: true
+    gateway:
+      discovery:
+        locator:
+          enabled: true
