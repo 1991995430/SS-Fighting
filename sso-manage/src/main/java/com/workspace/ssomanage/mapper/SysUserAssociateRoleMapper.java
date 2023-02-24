@@ -2,7 +2,7 @@ package com.workspace.ssomanage.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-import com.workspace.ssoserve.mapper.dao.SysUserAssociateRole;
+import com.workspace.ssomanage.mapper.dao.SysUserAssociateRole;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 

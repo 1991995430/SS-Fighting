@@ -1,7 +1,7 @@
 package com.workspace.ssomanage.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.workspace.ssoserve.mapper.dao.SysUser;
+import com.workspace.ssomanage.mapper.dao.SysUser;
 
 
 /**
