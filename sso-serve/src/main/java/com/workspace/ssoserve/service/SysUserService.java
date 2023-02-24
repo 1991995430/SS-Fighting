@@ -2,6 +2,7 @@ package com.workspace.ssoserve.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.gson.Gson;
+import com.workspace.ssoserve.dto.TestRequestDto;
 import com.workspace.ssoserve.entity.pojo.TokenInfo;
 import com.workspace.ssoserve.mapper.SysUserMapper;
 import com.workspace.ssoserve.mapper.dao.SysUser;
@@ -9,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.time.Duration;
@@ -54,7 +56,12 @@ public class SysUserService {
         Duration du = Duration.between(LocalDateTime.now(), tokenInfo.getOverTime());
         accessTokenStringRT.opsForValue().set(token, gson.toJson(tokenInfo), du);
         String tokenInfos = accessTokenStringRT.opsForValue().get(token);
-        return tokenInfos;
+        TestRequestDto testRequestDto = new TestRequestDto();
+        testRequestDto.setUserName("shangsong");
+        RestTemplate restTemplate = new RestTemplate();
+        String result = restTemplate.postForObject("http://192.168.3.120:19100/sso-manage/ssomanage/user/getKvByToken", testRequestDto, String.class);
+
+        return result;
     }
 
 }

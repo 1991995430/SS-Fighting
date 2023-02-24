@@ -47,7 +47,7 @@ spring:
         max-file-size: 500MB
         max-request-size: 500MB
 write-list:
-  urls: /sso-serve/sso/test/queryUser,/sso-serve/sso/test/getToken,/authority-server/authority/auth/getVerifyCodeImage,/authority-server/authority/auth/login,/authority-server/authority/auth/manageLogin,/authority-server/authority/service/getAllServiceList
+  urls: /sso-manage/ssomanage/user/getKvByToken,/sso-serve/sso/test/getVerifyCodeImage,/sso-serve/sso/test/queryUser,/sso-serve/sso/test/getToken,/authority-server/authority/auth/getVerifyCodeImage,/authority-server/authority/auth/login,/authority-server/authority/auth/manageLogin,/authority-server/authority/service/getAllServiceList
   ips: 192.168.0.1
 
 
