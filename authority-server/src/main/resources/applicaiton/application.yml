@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: authority-server
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/authority_manage?useUnicode=true&useSSL=false&characterEncoding=utf8&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=CONVERT_TO_NULL
+    username: root
+    password: Root@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      read-only: false
+      connection-timeout: 60000
+      idle-timeout: 60000
+      validation-timeout: 3000
+      max-lifetime: 60000
+      login-timeout: 5
+      maximum-pool-size: 60
+      minimum-idle: 10
+  cloud:
+    consul:
+      config:
+        enabled: true
+      discovery:
+        # 启用服务注册
+        register: true
+        # 健康检查的路径
+        health-check-path: /health
+        # 执行监控检查的频率
+        health-check-interval: 5s
+        health-check-timeout: 300s
+        # 服务注册标识，格式为：应用名称+服务器IP+端口
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+        # 启用服务发现
+        enabled: true
+        service-name: ${spring.application.name}
+        # 表示注册时使用IP而不是hostname
+        prefer-ip-address: true
+
+redis-cfg:
+  host: 127.0.0.1
+  port: 6379
+#  database: 15
+  password:
+  pool:
+    max-active: 10
+    max-wait: -1
+    max-idle: 10
+    min-idle: 0
+  timeout: 200
+  verify-pool: 14
+  access-token: 13
+
+mybatis:
+  # xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
+  mapper-locations: classpath*:/mapper/*.xml
+  # MyBaits 别名包扫描路径，通过该属性可以给包中的类注册别名
+  type-aliases-package: com.ys.authority.entity
+  global-config:
+    id-type: 2
+    field-strategy: 2
+    db-column-underline: true
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+server:
+  port: 9002

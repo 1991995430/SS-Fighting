@@ -15,8 +15,8 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class},
         scanBasePackages = {"com.ss.song.*"})
 @ServletComponentScan
-@EnableFeignClients(basePackages = "com.ss.song.*")
-@EnableDiscoveryClient
+//@EnableFeignClients(basePackages = "com.ss.song.*")
+//@EnableDiscoveryClient
 @MapperScan("com.ss.song.mapper")
 @EnableAutoDataSourceProxy
 public class PracticeApplication extends SpringBootServletInitializer {

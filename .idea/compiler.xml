@@ -7,12 +7,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="api-gateway" />
         <module name="sso-manage" />
+        <module name="authority-server" />
+        <module name="ss-practice (1)" />
         <module name="ss-common" />
-        <module name="ss-setting-api" />
         <module name="ss-practice-api" />
         <module name="sso-serve" />
+        <module name="api-gateway" />
+        <module name="ss-trino" />
+        <module name="ss-setting-api" />
       </profile>
       <profile name="Annotation profile for ss-fight" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -30,19 +33,25 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="api-gateway (1)" target="1.8" />
+      <module name="oauth2-sso" target="1.8" />
+      <module name="trino-cli" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
       <module name="api-gateway (1)" options="-parameters" />
+      <module name="authority-server" options="-parameters" />
+      <module name="oauth2-sso" options="" />
       <module name="ss-common" options="-parameters" />
       <module name="ss-practice" options="-parameters" />
+      <module name="ss-practice (1)" options="-parameters" />
       <module name="ss-practice-api" options="-parameters" />
       <module name="ss-service" options="-parameters" />
       <module name="ss-service-api" options="" />
       <module name="ss-setting" options="-parameters" />
       <module name="ss-setting-api" options="-parameters" />
+      <module name="ss-trino" options="-parameters" />
       <module name="sso-manage" options="-parameters" />
       <module name="sso-serve" options="-parameters" />
     </option>

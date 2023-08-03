@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 public class PracticeClient implements IPracticeClient {
 
-    @Value("${name}")
+    //@Value("${name}")
     private String userName;
 
     private final UserService userService;

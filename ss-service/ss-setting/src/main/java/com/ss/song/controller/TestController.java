@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/ss/test")
 public class TestController {
 
-    @Value("${name}")
+    //@Value("${name}")
     private String userName;
 
-    @Value("${id}")
+    //@Value("${id}")
     private String userId;
 
     private final IPracticeClient iPracticeClient;

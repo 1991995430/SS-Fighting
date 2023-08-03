@@ -29,6 +29,8 @@ public class AuthParamDto implements Serializable {
      */
     private String userAgent;
 
+    private String redirectUri;
+
     /**
      * 内部使用，可以直接添加指定的access-token
      */

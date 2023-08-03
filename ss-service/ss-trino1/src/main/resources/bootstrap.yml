@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: trino
+  datasource:
+    url: jdbc:mysql://localhost:3306/shangsong?useUnicode=true&useSSL=false&characterEncoding=utf8&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=CONVERT_TO_NULL
+    username: root
+    password: 199551
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      read-only: false
+      connection-timeout: 60000
+      idle-timeout: 60000
+      validation-timeout: 3000
+      max-lifetime: 60000
+      login-timeout: 5
+      maximum-pool-size: 60
+      minimum-idle: 10
+  cloud:
+
+server:
+  port: 8888
+
+logging:
+  level:
+    com:
+      quantitative:
+        datanet: DEBUG
+

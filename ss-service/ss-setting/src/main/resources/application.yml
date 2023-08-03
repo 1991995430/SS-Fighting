@@ -35,14 +35,14 @@ spring:
   application:
     name: ss-setting
   cloud:
-    nacos:
-      config:
-        server-addr: localhost:8848
-      username: nacos
-      password: nacos
-      discovery:
-        username: nacos
-        password: nacos
+    #nacos:
+    #  config:
+    #    server-addr: localhost:8848
+    #  username: nacos
+    #  password: nacos
+    #  discovery:
+    #    username: nacos
+    #    password: nacos
   main:
     allow-bean-definition-overriding: true
 

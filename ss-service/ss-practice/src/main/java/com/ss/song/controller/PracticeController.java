@@ -16,10 +16,10 @@ public class PracticeController {
 
     private final UserService userService;
 
-    @Value("${name}")
+    //@Value("${name}")
     private String userName;
 
-    @Value("${id}")
+    //@Value("${id}")
     private String userId;
 
     public PracticeController(UserService userService) {
