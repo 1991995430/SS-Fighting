@@ -7,6 +7,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
+@MapperScan(basePackages = {"com.ss.song.mapper"})
 public class TrinoApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

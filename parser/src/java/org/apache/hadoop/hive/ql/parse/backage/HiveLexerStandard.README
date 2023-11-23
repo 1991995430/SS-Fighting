@@ -1,0 +1,15 @@
+这个ANTLR（ANother Tool for Language Recognition）文件定义了一个词法分析器（lexer），用于解析Hive语言的语法。
+
+首先，lexer grammar HiveLexerStandard; 定义了一个名为HiveLexerStandard的词法分析器。
+
+在options块中，superClass = GenericHiveLexer; 表示这个lexer继承自GenericHiveLexer，这意味着它使用GenericHiveLexer中定义的规则。
+
+import HiveLexerParent; 语句表示这个lexer使用HiveLexerParent中定义的规则。
+
+在@lexer::header块中，它定义了生成的lexer的包名和导入的类库。
+
+StringLiteral 规则用于匹配字符串字面量。它匹配单引号或双引号包围的任意字符，但不包括引号本身或反斜杠。这表示它匹配例如 'hello' 或 "hello" 这样的字符串。
+
+QuotedIdentifier是一个片段（fragment），这意味着它不能单独作为一个规则被匹配，而只能被其他规则作为部分使用。它匹配两种引号包围的标识符：双引号 '"' 和反引号 '`'。在匹配之后，它使用StringUtils.replace方法替换掉文本中的双引号或反引号。这可能是为了处理转义字符或特殊标识符。
+
+总的来说，这个ANTLR文件定义了Hive语言中的一些基本词法规则，如字符串字面量和带引号的标识符，并将这些规则应用于继承自GenericHiveLexer的词法分析器。

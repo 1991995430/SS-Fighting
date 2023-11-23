@@ -1,18 +1,20 @@
 package com.ss.song.controller;
 
-import com.gbasedbt.jdbc.Connection2;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.ss.song.controller.Param.ConSearchParams;
 import com.ss.song.dto.*;
+import com.ss.song.mapper.DataDtoMapper;
+import com.ss.song.mapper.dao.DataDto;
 import com.ss.song.params.JobParams;
-import org.apache.ibatis.annotations.One;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -20,9 +22,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -35,31 +36,19 @@ public class PracticeController {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    @GetMapping("/con1")
-    public List<Object> con1(HttpServletRequest request) {
+    @Resource
+    private DataDtoMapper dataDtoMapper;
+
+    @PostMapping("/con1")
+    public List<Object> con1(@RequestBody ConSearchParams conSearchParams, HttpServletRequest request) {
         System.out.println(request.getHeader("username"));
         System.out.println(request.getHeader("password"));
-        /*Map<String, String> map = new HashMap<>();
-        map.put("value", "value");
-        map.put("text", "test");*/
-        List<String> list = new ArrayList<>();
-        list.add("ssss,111");
-        list.add("1111111,222");
-        list.add("22222,333");
-        List<Object> list1 = new ArrayList<>();
-        DataDto dataDto = new DataDto();
-        dataDto.setId(1);
-        dataDto.setName("ss1");
-        dataDto.setAge(12);
-        dataDto.setScore(122.3);
-        DataDto dataDto1 = new DataDto();
-        dataDto1.setId(2);
-        dataDto1.setName("ss3");
-        dataDto1.setAge(4);
-        dataDto1.setScore(156.3);
-        list1.add(dataDto1);
-        list1.add(dataDto);
-        return list1;
+
+        QueryWrapper<DataDto> dataDtoQueryWrapper = new QueryWrapper<>();
+        List<DataDto> dataDtos = dataDtoMapper.selectList(dataDtoQueryWrapper);
+        List<Object> list = new ArrayList<>(dataDtos);
+
+        return list;
         //return "1,shang,18\n2,ss1,12\n12,hao,123";
     }
 
@@ -168,22 +157,7 @@ public class PracticeController {
 
 
     public static void main(String[] args) {
-        List<String> columns = new ArrayList<>();
-        columns.add("value");
-        columns.add("text");
-        String json = "[{\"text\": \"song\", 	\"value\": \"shang\" }, { 	\"text\": \"ssss\", 	\"value\": \"vcaa\" }]";
-        Gson gson = new Gson();
-        List<Map<?, ?>> o = gson.fromJson(json, List.class);
-        List<String> finalStrList = new LinkedList<>();
-        for (Map<?, ?> map : o) {
-            StringBuilder sb = new StringBuilder();
-            for (String column : columns) {
-                sb.append(map.get(column)).append(",");
-            }
-            sb.deleteCharAt(sb.lastIndexOf(","));
-            finalStrList.add(sb.toString());
-        }
-        System.out.println(finalStrList);
+        System.out.println(new Time(new Date().getTime()));
     }
 
     @PostMapping("/submit")

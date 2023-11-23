@@ -103,7 +103,7 @@ public class CodeGenerator {
         try {
             //openSSH("10.202.253.229", "10.202.233.16", 4346, 3306, "xukaihua", "W1dvQWlKaURvbmdNaW5nMTMxNCFd");
         } catch (Exception e) {
-            log.error("", e);
+            //log.error("", e);
         }
 
         DataSourceConfig dsc = new DataSourceConfig();

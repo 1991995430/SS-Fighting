@@ -1,11 +1,14 @@
 package com.ss.song.dto;
 
 import java.io.Serializable;
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * author shangsong 2023/7/21
  */
-public class DataDto implements Serializable {
+public class DataDtoss implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -16,6 +19,36 @@ public class DataDto implements Serializable {
     private Integer age;
 
     private Double score;
+
+    private LocalDateTime time;
+
+    private Date date;
+
+    private Time createtime;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Time getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Time createtime) {
+        this.createtime = createtime;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalDateTime time) {
+        this.time = time;
+    }
 
     public Double getScore() {
         return score;

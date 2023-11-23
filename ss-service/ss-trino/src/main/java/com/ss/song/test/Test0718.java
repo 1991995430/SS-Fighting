@@ -11,5 +11,8 @@ public class Test0718 {
         String url2 = "jdbc:gbase://192.168.3.208:5258/wltest";
         System.out.println(url1.matches(regx));
         System.out.println(url2.matches(regx));
+
+        String ss = "thrift://192.168.3.201:9083";
+        System.out.println(ss.substring(ss.lastIndexOf("/") + 1, ss.lastIndexOf(":")));
     }
 }

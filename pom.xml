@@ -13,6 +13,8 @@
         <module>ss-common</module>
         <module>ss-service-api</module>
         <module>api-gateway</module>
+        <module>Antlr</module>
+        <module>AA</module>
     </modules>
 
     <parent>

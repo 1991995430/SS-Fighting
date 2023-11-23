@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * author shangsong 2023/7/18
@@ -12,20 +14,25 @@ public class Test0718001 {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
-        Class.forName("com.gbase.jdbc.Driver");
+        String conn = "connector.name=sqlserver\nconnection-url=jdbc:sqlserver://192.168.6.251:1433;databaseName=datastudio_source;encrypt=false\nconnection-user=sa\nconnection-password=Root$123";
+        System.out.println(getParamMap(conn));
 
-        // 创建数据库连接
-        String url = "jdbc:gbase://192.168.3.208:5258/wltest";
-        String username = "root";
-        String password = "root";
-        Connection conn = DriverManager.getConnection(url, username, password);
+    }
 
-        ResultSet resultSet1 = conn.getMetaData().getSchemas();
-
-        while (resultSet1.next()) {
-            System.out.println(resultSet1.getString("TABLE_SCHEMA"));
+    private static Map<String, String> getParamMap(String connectionParam) {
+        String[] params = connectionParam.split("\n");
+        Map<String, String> paramMap = new HashMap<>();
+        for (String param : params) {
+            String[] split = param.split("=", 2);
+            if (split[0].equals("connector.name")) {
+                continue;
+            }
+            try {
+                paramMap.put(split[0], split[1]);
+            } catch (Exception e) {
+            }
         }
-
+        return paramMap;
     }
 
 }
