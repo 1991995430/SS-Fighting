@@ -15,6 +15,7 @@
         <module>api-gateway</module>
         <module>Antlr</module>
         <module>AA</module>
+        <module>kafka</module>
     </modules>
 
     <parent>

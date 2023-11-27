@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class AA {
 
-    private static final String TABLE_NAME = "user001";
+    private static final String TABLE_NAME = "test111";
     private static final String COLUMN_FAMILY = "cf1";
     private static final String COLUMN_NAME = "id";
     private static final String ROW_KEY = "1001";
@@ -68,7 +68,7 @@ public class AA {
         // insertData(connection);
 
 
-        //selectTable(table);
+        selectTable(table);
 
         System.out.println("---------------------------------------------------------------");
 

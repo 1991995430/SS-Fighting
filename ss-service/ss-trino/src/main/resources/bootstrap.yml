@@ -16,6 +16,22 @@ spring:
       maximum-pool-size: 60
       minimum-idle: 10
   cloud:
+  kafka:
+    bootstrap-servers: 192.168.3.180:9092,192.168.3.181:9092,192.168.3.182:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      retries: 0
+      acks: 1
+      batch-size: 16384
+      buffer-memory: 33554432
+    consumer:
+      enable-auto-commit: true
+      auto-commit-interval: 100
+      group-id: dataAsset
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
 server:
   port: 9080
