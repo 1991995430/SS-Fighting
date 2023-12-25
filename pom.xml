@@ -14,8 +14,8 @@
         <module>ss-service-api</module>
         <module>api-gateway</module>
         <module>Antlr</module>
-        <module>AA</module>
         <module>kafka</module>
+        <module>BB</module>
     </modules>
 
     <parent>
