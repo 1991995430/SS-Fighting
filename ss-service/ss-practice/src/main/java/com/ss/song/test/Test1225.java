@@ -1,19 +1,18 @@
 package com.ss.song.test;
 
-import com.ss.song.annotation.FlankerColumn;
-import com.ss.song.annotation.FlankerKey;
-import com.ss.song.annotation.FlankerParent;
-import com.ss.song.annotation.FlankerTable;
+import com.ss.song.annotation.*;
 import com.ss.song.enums.FlankerErrorType;
 import com.ss.song.enums.None;
 import com.ss.song.enums.SqlType;
 import com.ss.song.meta.ColumnMeta;
 import com.ss.song.meta.KeyMeta;
+import com.ss.song.meta.RelationMeta;
 import com.ss.song.meta.TableMeta;
 import com.ss.song.model.User;
 import com.ss.song.utils.ClassScanner;
 import com.ss.song.utils.DataUtils;
 import com.ss.song.utils.ReflectUtils;
+import com.ss.song.utils.RelationTable;
 import org.apache.commons.lang.StringUtils;
 
 import java.lang.reflect.Field;
@@ -24,22 +23,79 @@ import java.util.*;
  */
 public class Test1225 {
     private static final Map<Class<?>, TableMeta> tableMetaMap = new HashMap<>();
+    private static final Set<RelationTable> relationTableSet = new HashSet<>();
 
     public static void main(String[] args) {
-        User user = new User();
-        user.setId(12);
-        user.setName("ss");
-        user.setCity("nj");
-        Class userClass = user.getClass();
-        TableMeta tableMeta = new TableMeta();
-        tableMeta.setName("user");
-        tableMetaMap.put(userClass, tableMeta);
-
-        if (tableMetaMap.containsKey(userClass)) {
-            System.out.println("包含：" + tableMetaMap.get(userClass).getName());
-        }
-        ClassScanner.scan("com.ss.song").filter(clazz -> clazz.isAnnotationPresent(FlankerTable.class)).map(clazz -> loadTableMeta(clazz)).forEach(tableMeta1 -> tableMetaMap.put(tableMeta1.getTableClass(), tableMeta1));
+        ClassScanner.scan("com.ss.song").filter(clazz -> clazz.isAnnotationPresent(FlankerTable.class)).map(clazz -> loadTableMeta(clazz)).forEach(tableMeta -> tableMetaMap.put(tableMeta.getTableClass(), tableMeta));
         System.out.println(tableMetaMap);
+        TableMeta[] tableMetas = tableMetaMap.values().toArray(new TableMeta[0]);
+        for (TableMeta meta : tableMetas)
+        {
+            Class<?> tableClass = meta.getTableClass();
+            // 检查1对多子对象
+            Field[] fields = ReflectUtils.getAllFields(tableClass, FlankerChildren.class);
+            for (Field field : fields)
+            {
+                FlankerChildren children = field.getAnnotation(FlankerChildren.class);
+                Class<?> childTableClass = children.singleton() ? field.getType() : children.childClass();
+                if (childTableClass == Object.class)
+                {
+                    // 子表类型未设置
+                    //throw new StandardException(FlankerErrorType.Metadata.INVALID_TABLE_CLASS, childTableClass.getName());
+                }
+                TableMeta childTableMeta = tableMetaMap.get(childTableClass);
+                if (childTableMeta == null)
+                {
+                    // 子表不存在
+                    //throw new StandardException(FlankerErrorType.Metadata.TABLE_NOT_EXISTS, childTableClass.getName());
+                }
+                if (childTableMeta.getParent() != null)
+                {
+                    // 已设置父对象
+                    //throw new StandardException(FlankerErrorType.Metadata.PARENT_TABLE_EXISTS, childTableClass.getName());
+                }
+                childTableMeta.setSingleton(children.singleton());
+                meta.addChild(field, childTableMeta);
+            }
+        }
+        System.out.println();
+        // 初始化关系
+        for (TableMeta leftTableMeta : tableMetas)
+        {
+            // 检查多对多子对象
+            Field[] relationFields = ReflectUtils.getAllFields(leftTableMeta.getTableClass(), FlankerRelation.class);
+            for (Field relationField : relationFields)
+            {
+                FlankerRelation flankerRelation = relationField.getAnnotation(FlankerRelation.class);
+                if (!Set.class.isAssignableFrom(relationField.getType()))
+                {
+                    // 关系属性必须是Set<String>集合类型
+                   // throw new StandardException(FlankerErrorType.Metadata.INVALID_RELATION_FIELD_DEFINE, relationField.getType().getName());
+                }
+                Class<?> otherTableClass = flankerRelation.target();
+                TableMeta rightTableMeta = getRootTableMeta(otherTableClass);// 找到关联表对应的元数据,对端必须是根表
+                switch (flankerRelation.relationType())
+                {
+                    case LEFT:
+                        if (!rightTableMeta.isRoot())
+                        {
+                            // 右表必须是根表
+                            //throw new StandardException(FlankerErrorType.Metadata.TABLE_NOT_ROOT, otherTableClass.getName());
+                        }
+                        break;
+                    case RIGHT:
+                        if (!leftTableMeta.isRoot())
+                        {
+                            // 右表必须是根表
+                           // throw new StandardException(FlankerErrorType.Metadata.TABLE_NOT_ROOT, leftTableMeta.getTableClass().getName());
+                        }
+                        break;
+                }
+                RelationMeta relationMeta = new RelationMeta(relationField, flankerRelation.relationType(), leftTableMeta.getTableClass(), rightTableMeta.getTableClass());
+                leftTableMeta.addRelationMeta(relationMeta);// 添加多对多关系映射
+                relationTableSet.add(relationMeta.getRelationTable());
+            }
+        }
 
     }
 
@@ -121,5 +177,24 @@ public class Test1225 {
         }
         tableMeta.setColumns(columnList.toArray(new ColumnMeta[0]));
         return tableMeta;
+    }
+
+    public static TableMeta getRootTableMeta(Class<?> tableClass)
+    {
+        if (tableMetaMap.containsKey(tableClass))
+        {
+            TableMeta tableMeta = tableMetaMap.get(tableClass);
+            if (!tableMeta.isRoot())
+            {
+                // 非根节点
+                throw new RuntimeException(FlankerErrorType.Metadata.TABLE_NOT_ROOT.message());
+            }
+            return tableMeta;
+        }
+        else
+        {
+            // 元数据不存在
+            throw new RuntimeException(FlankerErrorType.Metadata.TABLE_NOT_EXISTS.message());
+        }
     }
 }

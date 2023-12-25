@@ -6,6 +6,7 @@ import com.ss.song.model.User;
 import com.ss.song.rest.RestResponse;
 import com.ss.song.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,8 @@ import java.util.List;
 public class PracticeController {
 
     private final UserService userService;
+
+    private JdbcTemplate jdbcTemplate;
 
     //@Value("${name}")
     private String userName;
