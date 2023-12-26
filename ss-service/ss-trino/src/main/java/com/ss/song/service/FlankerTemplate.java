@@ -140,6 +140,8 @@ public interface FlankerTemplate
 	 */
 	<T> Stream<T> queryForStream(Class<T> tableClass, FlankerFilter<T> filter, Comparator<T> comparator);
 
+	<T> Stream<T> queryForStream(Class<T> tableClass, Comparator<T> comparator);
+
 	/**
 	 * 获取对象流并用于修改的目的
 	 *
@@ -172,6 +174,11 @@ public interface FlankerTemplate
 	default <T> List<T> queryForList(Class<T> tableClass, FlankerFilter<T> filter, Comparator<T> comparator)
 	{
 		return this.queryForStream(tableClass, filter, comparator).collect(Collectors.toList());
+	}
+
+	default <T> List<T> queryForList(Class<T> tableClass, Comparator<T> comparator)
+	{
+		return this.queryForStream(tableClass, comparator).collect(Collectors.toList());
 	}
 
 	/**

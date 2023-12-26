@@ -73,4 +73,11 @@ public class SsController {
         }
         return response;
     }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ApiOperation("获取JDBC资源列表")
+    public List<JdbcResource> getJdbcResourceList(String queryString)
+    {
+        return applicationService.getJdbcResourceList(queryString);
+    }
 }

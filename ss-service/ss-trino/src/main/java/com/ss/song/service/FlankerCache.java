@@ -149,7 +149,7 @@ public class FlankerCache
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	protected Object find(Path path)
+	public Object find(Path path)
 	{
 		if (path == null || path.isEmpty())
 		{
@@ -224,7 +224,7 @@ public class FlankerCache
 	 *
 	 * @param rootData
 	 */
-	protected void insertRoot(Object rootData)
+	public void insertRoot(Object rootData)
 	{
 		Class<?> tableClass = rootData.getClass();
 		TableMeta tableMeta = this.flankerMetaService.getRootTableMeta(tableClass);
@@ -248,7 +248,7 @@ public class FlankerCache
 	 * @param tableClass
 	 * @return
 	 */
-	protected <T> Stream<T> getRootStream(Class<T> tableClass)
+	public  <T> Stream<T> getRootStream(Class<T> tableClass)
 	{
 		Map<String, Object> dataMap = rootDataMapCache.get(tableClass);
 		List<Object> list = new LinkedList<>();
@@ -265,7 +265,7 @@ public class FlankerCache
 	 * @param tableClass
 	 * @param key
 	 */
-	protected void deleteRoot(Class<?> tableClass, String key)
+	public void deleteRoot(Class<?> tableClass, String key)
 	{
 		Map<String, Object> dataMap = rootDataMapCache.get(tableClass);
 		if (dataMap == null)
@@ -289,7 +289,7 @@ public class FlankerCache
 	 * @param tableClass
 	 * @param key
 	 */
-	protected <T> T reloadRoot(Class<T> tableClass, String key)
+	public  <T> T reloadRoot(Class<T> tableClass, String key)
 	{
 		Map<String, Object> dataMap = rootDataMapCache.get(tableClass);
 		if (dataMap == null)
