@@ -11,7 +11,9 @@ public class JdbcResource
 
 	@FlankerKey
 	private String id;
+	@FlankerColumn(length = 200)
 	private String name;
+	@FlankerColumn(length = 200)
 	private String remark;
 	@FlankerColumn(length = 100)
 	private String driverClass;
