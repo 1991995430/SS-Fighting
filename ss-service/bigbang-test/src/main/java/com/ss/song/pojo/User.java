@@ -9,6 +9,13 @@ public class User implements  Cloneable{
     private Integer id;
     private String name;
 
+    public User() {
+    }
+
+    public User(String name) {
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }
