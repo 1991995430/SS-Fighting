@@ -11,4 +11,10 @@ public interface ApplicationService {
     void insertJdbcResource(JdbcResource resource);
 
     List<JdbcResource> getJdbcResourceList(String queryString);
+
+    void updateJdbcResource(String jdbcResourceId, JdbcResource resource);
+
+    String tread();
+
+    void deleteJdbcResource(String jdbcResourceId);
 }

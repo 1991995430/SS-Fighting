@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.ss</groupId>
-    <artifactId>ss-trino</artifactId>
+    <artifactId>bigbang-test</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
