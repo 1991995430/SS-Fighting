@@ -8,7 +8,7 @@ import javax.xml.parsers.SAXParserFactory;
 /**
  * author shangsong 2023/12/20
  */
-public class ParseXmlFile {
+public class ParseXmlFileTest {
     public static void main(String[] args) {
         try {
             // 创建解析器工厂

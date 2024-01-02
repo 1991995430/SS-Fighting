@@ -225,11 +225,13 @@ public class FlankerTemplateImpl implements FlankerTemplate
 		{
 			// 缓存对象不存在
 			//throw new StandardException(FlankerErrorType.Query.PATH_DATA_NOT_EXISTS, path);
+			System.out.println();
 		}
 		if (cachedData == data)
 		{
 			// 不可使用已缓存的对象进行覆盖操作
 			//throw new StandardException(FlankerErrorType.Query.CACHED_CANNOT_OVERWRITE, path);
+			System.out.println();
 		}
 		List<Query> updateQueryList = new ArrayList<>();
 		try
