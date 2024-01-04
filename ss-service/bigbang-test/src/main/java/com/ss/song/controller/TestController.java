@@ -2,6 +2,7 @@ package com.ss.song.controller;
 
 import com.ss.song.config.SshConfig;
 import com.ss.song.mapper.DataDtoMapper;
+import com.ss.song.service.AsyncService;
 import com.ss.song.test.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,9 @@ public class TestController {
     @Resource
     private SshConfig sshConfig;
 
+    @Resource
+    private AsyncService asyncService;
+
     @PostMapping("/con1")
     public void con1() {
 
@@ -36,5 +40,11 @@ public class TestController {
         System.out.println(sshConfig.getPassword());
         System.out.println(userService.getStr1());
 
+    }
+
+    @PostMapping("/con2")
+    private void con2() {
+        System.out.println(Thread.currentThread().getName());
+        asyncService.aa();
     }
 }

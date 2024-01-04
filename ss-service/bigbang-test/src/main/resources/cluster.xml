@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cluster>
+	<node host="bigbang-180" username="root" password="dev@liangjie" port="22">
+		<app ref="system" />
+		<app ref="bigbang_dispatcher_detector" />
+		<app ref="bigbang_dispatcher_executor" />
+	</node>
+	<node host="bigbang-181" username="root" password="dev@liangjie" port="22">
+		<app ref="bigbang_application" />
+		<app ref="bigbang_dispatcher_detector" />
+		<app ref="bigbang_dispatcher_executor" />
+	</node>
+	<node host="bigbang-182" username="root" password="dev@liangjie" port="22">
+		<app ref="bigbang_pbh" />
+		<app ref="bigbang_dispatcher_detector" />
+		<app ref="bigbang_dispatcher_executor" />
+	</node>
+	<node host="bigbang-183" username="root" password="dev@liangjie" port="22">
+		<app ref="comac_acquisitor" />
+		<app ref="bigbang_dispatcher_service" />
+		<app ref="bigbang_warehouse" />
+		<app ref="bigbang_webapp" />
+	</node>
+</cluster>
