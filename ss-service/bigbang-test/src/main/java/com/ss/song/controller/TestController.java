@@ -47,4 +47,9 @@ public class TestController {
         System.out.println(Thread.currentThread().getName());
         asyncService.aa();
     }
+
+    @PostMapping("/con3")
+    private void con3() throws Exception {
+
+    }
 }
