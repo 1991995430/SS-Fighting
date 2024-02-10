@@ -42,7 +42,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     password: root
     username: root
-    url: jdbc:mysql://192.168.3.23:3306/shangsong?serverTimezone=Asia/Shanghai&useUnicode=true&charcterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://localhost:3306/shangsong?serverTimezone=Asia/Shanghai&useUnicode=true&charcterEncoding=UTF-8&useSSL=false
 
   security:
     user:
