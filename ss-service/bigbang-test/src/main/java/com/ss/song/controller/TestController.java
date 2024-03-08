@@ -43,8 +43,9 @@ public class TestController {
     }
 
     @PostMapping("/con2")
-    private void con2() {
+    private void con2() throws InterruptedException {
         System.out.println(Thread.currentThread().getName());
-        asyncService.aa();
+        asyncService.tread1();
+        asyncService.tread2();
     }
 }
