@@ -48,4 +48,9 @@ public class TestController {
         asyncService.tread1();
         asyncService.tread2();
     }
+
+    @PostMapping("/con3")
+    private void con3() throws Exception {
+
+    }
 }
