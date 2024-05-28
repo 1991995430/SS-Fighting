@@ -26,13 +26,7 @@ public class DataDto implements Serializable {
 
     private Double score;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime time;
 
-    @JsonFormat(timezone = "GMT+8")
-    private Date date;
-
-    private Time createtime;
 
     public Integer getId() {
         return id;
@@ -64,29 +58,5 @@ public class DataDto implements Serializable {
 
     public void setScore(Double score) {
         this.score = score;
-    }
-
-    public LocalDateTime getTime() {
-        return time;
-    }
-
-    public void setTime(LocalDateTime time) {
-        this.time = time;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Time getCreatetime() {
-        return createtime;
-    }
-
-    public void setCreatetime(Time createtime) {
-        this.createtime = createtime;
     }
 }

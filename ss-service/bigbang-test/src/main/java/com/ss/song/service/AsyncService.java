@@ -16,6 +16,7 @@ import java.util.List;
  */
 @Service
 public class AsyncService {
+    ThreadLocal<String> t1 = new ThreadLocal();
 
     @Resource
     private TaskExecutor taskExecutor;
@@ -31,6 +32,7 @@ public class AsyncService {
 
     //@Async
     public void aa() {
+        t1.set("sss");
         System.out.println("我是线程aa");
         System.out.println(taskExecutor.getClass().getName());
         System.out.println(Thread.currentThread().getName());

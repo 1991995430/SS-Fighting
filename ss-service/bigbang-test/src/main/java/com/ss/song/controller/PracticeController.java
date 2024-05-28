@@ -16,10 +16,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.Time;
@@ -63,16 +60,20 @@ public class PracticeController {
 
     @PostMapping("/con2")
     public ResponseEntity<InputStreamResource> exportData(HttpServletRequest request) throws IOException {
-
-        System.out.println(request.getHeader("username"));
-        System.out.println(request.getHeader("password"));
+        // 打印请求头中的信息
+        System.out.println("Username: " + request.getHeader("username"));
+        System.out.println("Password: " + request.getHeader("password"));
 
         StringBuilder data = new StringBuilder();
         data.append("8,ss,3,2.6\n");
         data.append("9,ss1,3,2.6\n");
 
-        // 写入文件
-        File file = writeDataToFile(data.toString());
+        // 写入文件并生成文件流
+        File file = new File("your_file_name.csv");
+        try (OutputStream os = Files.newOutputStream(file.toPath())) {
+            os.write(data.toString().getBytes());
+            os.flush();
+        }
 
         // 生成文件流
         Path filePath = file.toPath();
@@ -84,6 +85,7 @@ public class PracticeController {
                 .contentLength(file.length())
                 .body(resource);
     }
+
 
     @GetMapping("/con4")
     public ResponseEntity<Object> con4(HttpServletRequest request) throws IOException {
